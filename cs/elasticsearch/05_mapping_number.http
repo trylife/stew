@@ -1,0 +1,72 @@
+### 使用动态映射
+PUT {{es_host}}/datedb/_doc/1
+Content-Type: application/json
+
+{
+  "create_date": "2021/09/02"
+}
+
+### 删除索引库
+DELETE {{es_host}}/myindex
+Content-Type: application/json
+
+### 创建映射并使用数字检测模式
+PUT  {{es_host}}/myindex
+Content-Type: application/json
+
+{
+  "mappings": {
+    "numeric_detection": true
+  }
+}
+
+### 添加文档数据（默认使用动态映射）
+PUT{{es_host}}/myindex/_doc/1
+Content-Type: application/json
+
+{
+  "my_float": "1.0",
+  "my_integer": "1"
+}
+
+### 查询映射信息
+GET {{es_host}}/myindex/_mapping
+Content-Type: application/json
+
+//{
+//  "myindex": {
+//    "mappings": {
+//      "numeric_detection": true,
+//      "properties": {
+//        "my_float": {
+//          "type": "float"
+//        },
+//        "my_integer": {
+//          "type": "long"
+//        }
+//      }
+//    }
+//  }
+//}
+
+### 不开启数字映射
+### 删除索引
+DELETE {{es_host}}/myindex
+Content-Type: application/json
+
+### 新增文档数据（默认使用动态映射，不启用数字映射模式）
+PUT {{es_host}}/myindex/_doc/1
+Content-Type: application/json
+
+{
+  "my_float":   "1.0",
+  "my_integer": "1"
+}
+
+### 查询当前索引的映射信息
+GET {{es_host}}/myindex/_mapping
+Content-Type: application/json
+
+### 查询当前索引的映射信息
+GET {{es_host}}/myindex/_doc/1
+Content-Type: application/json

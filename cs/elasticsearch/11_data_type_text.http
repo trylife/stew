@@ -1,0 +1,81 @@
+DELETE {{es_host}}/text_index
+
+### 创建TEXT映射
+PUT  {{es_host}}/text_index
+Content-Type: application/json
+
+{
+  "mappings": {
+    "properties": {
+      "tag_name": {
+        "type": "text"
+      }
+    }
+  }
+}
+
+### 添加文档数据
+PUT {{es_host}}/text_index/_doc/1
+Content-Type: application/json
+
+{
+  "tag_name": "江苏省"
+}
+
+### 添加文档数据
+PUT {{es_host}}/text_index/_doc/2
+Content-Type: application/json
+
+{
+  "tag_name": "河北省"
+}
+
+### 搜索
+GET {{es_host}}/text_index/_doc/_search
+Content-Type: application/json
+
+//{
+//  "query": {
+//    "match": {
+//      "tag_name": "河南省"
+//    }
+//  }
+//}
+//
+//{
+//  "took": 7,
+//  "timed_out": false,
+//  "_shards": {
+//    "total": 1,
+//    "successful": 1,
+//    "skipped": 0,
+//    "failed": 0
+//  },
+//  "hits": {
+//    "total": {
+//      "value": 2,
+//      "relation": "eq"
+//    },
+//    "max_score": 0.8754687,
+//    "hits": [
+//      {
+//        "_index": "text_index",
+//        "_type": "_doc",
+//        "_id": "2",
+//        "_score": 0.8754687,
+//        "_source": {
+//          "tag_name": "河北省"
+//        }
+//      },
+//      {
+//        "_index": "text_index",
+//        "_type": "_doc",
+//        "_id": "1",
+//        "_score": 0.18232156,
+//        "_source": {
+//          "tag_name": "江苏省"
+//        }
+//      }
+//    ]
+//  }
+//}

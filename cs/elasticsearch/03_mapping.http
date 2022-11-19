@@ -1,0 +1,27 @@
+### 获取MAPPING
+GET {{es_host}}/order_index/_mappings
+Content-Type: application/json
+
+### 使用动态映射
+PUT {{es_host}}/datadb/_doc/1
+Content-Type: application/json
+
+{
+  "count": 10
+}
+
+### GET
+GET {{es_host}}/datadb
+
+#{
+#  "datadb": {
+#    "aliases": {},
+#    "mappings": {
+#      "properties": {
+#        "count": {
+#          "type": "long"
+#        }
+#      }
+#    }
+#  }
+#}

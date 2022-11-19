@@ -1,0 +1,47 @@
+### 创建索引
+PUT {{es_host}}/order_index?pretty
+Content-Type: application/json
+
+### 删除索引
+DELETE {{es_host}}/order_index?pretty
+Content-Type: application/json
+
+### 查询索引
+GET {{es_host}}/_cat/indices?v
+Content-Type: application/json
+
+### 插入数据
+PUT {{es_host}}/order_index/_doc/oid_abcde
+Content-Type: application/json
+
+{
+  "id": "oid_abcde",
+  "price": 4999
+}
+
+### 全更新数据
+PUT {{es_host}}/order_index/_doc/oid_abcde
+Content-Type: application/json
+
+{
+  "price": 5000,
+  "name": "jo"
+}
+
+### 部分更新数据
+POST {{es_host}}/order_index/_update/oid_abcde
+Content-Type: application/json
+
+{
+  "doc": {
+    "price": 5001
+  }
+}
+
+### 查询数据
+GET {{es_host}}/order_index/_doc/oid_abcde
+Content-Type: application/json
+
+### 删除数据
+DELETE {{es_host}}/order_index/_doc/oid_abcde
+Content-Type: application/json

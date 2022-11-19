@@ -1,0 +1,46 @@
+### 创建名为userinfo的索引库并为其创建映射关系
+PUT {{es_host}}/userinfo
+Content-Type: application/json
+
+{
+  "mappings": {
+    "properties": {
+      "age": {
+        "type": "long"
+      },
+      "alias_age": {
+        "type": "alias",
+        "path": "age"
+      },
+      "transit_mode": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+
+
+### 在索引库userinfo中插入一条文档数据
+PUT {{es_host}}/userinfo/_doc/1
+Content-Type: application/json
+
+{
+"age":39,
+"transit_mode":"transit_mode"
+
+}
+
+
+### 通过别名查询年龄大于30的用户信息
+GET {{es_host}}/userinfo/_doc/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "range": {
+      "alias_age": {
+        "gte": 30
+      }
+    }
+  }
+}

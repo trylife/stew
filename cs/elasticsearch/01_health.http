@@ -1,0 +1,8 @@
+
+### elasticsearch health check
+GET http://127.0.0.1:10700/_cat/health?v
+Content-Type: application/json
+
+### elasticsearch health check
+GET http://127.0.0.1:10700/_cluster/health
+Content-Type: application/json

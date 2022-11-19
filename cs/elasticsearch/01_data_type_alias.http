@@ -1,0 +1,20 @@
+### Send POST request with json body
+PUT http://127.0.0.1:10700/userinfo
+Content-Type: application/json
+
+{
+  "mappings": {
+    "properties": {
+      "age": {
+        "type": "long"
+      },
+      "aliasage": {
+        "type": "alias",
+        "path": "age"
+      },
+      "transit_mode": {
+        "type": "keyword"
+      }
+    }
+  }
+}

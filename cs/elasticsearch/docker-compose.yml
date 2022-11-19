@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  # https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./es/data:/usr/share/elasticsearch/data
+    ports:
+      - 10700:9200
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    environment:
+      - TZ=Asia/Shanghai
+      - ELASTICSEARCH_HOSTS=http://es:9200
+    ports:
+      - 10701:5601
+    depends_on:
+      - es

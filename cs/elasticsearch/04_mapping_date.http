@@ -1,0 +1,105 @@
+### 使用动态映射
+PUT {{es_host}}/datedb/_doc/1
+Content-Type: application/json
+
+{
+  "create_date": "2021/09/02"
+}
+
+### 获取MAPPING
+GET {{es_host}}/datedb/_mappings
+Content-Type: application/json
+
+//{
+//  "datedb": {
+//    "mappings": {
+//      "properties": {
+//        "create_date": {
+//          "type": "date",
+//          "format": "yyyy/MM/dd HH:mm:ss||yyyy/MM/dd||epoch_millis"
+//        }
+//      }
+//    }
+//  }
+//}
+
+
+### date detection 禁用日期检测
+PUT {{es_host}}/date_detection_false
+Content-Type: application/json
+
+{
+  "mappings": {
+    "date_detection": false
+  }
+}
+
+### 使用动态映射
+PUT {{es_host}}/date_detection_false/_doc/1
+Content-Type: application/json
+
+{
+  "create_date": "2021/09/02"
+}
+
+### 获取MAPPING
+GET {{es_host}}/date_detection_false/_mappings
+Content-Type: application/json
+
+//{
+//  "date_detection_false": {
+//    "mappings": {
+//      "date_detection": false,
+//      "properties": {
+//        "create_date": {
+//          "type": "text",
+//          "fields": {
+//            "keyword": {
+//              "type": "keyword",
+//              "ignore_above": 256
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+
+
+### date detection 禁用日期检测
+PUT {{es_host}}/date_dynamic_date_format
+Content-Type: application/json
+
+{
+  "mappings": {
+    "dynamic_date_formats": ["yyy/MM/dd"]
+  }
+}
+
+### 使用动态映射
+PUT {{es_host}}/date_dynamic_date_format/_doc/1
+Content-Type: application/json
+
+{
+  "create_date": "2021/09/02"
+}
+
+### 获取MAPPING
+GET {{es_host}}/date_dynamic_date_format/_mappings
+Content-Type: application/json
+
+//{
+//  "date_dynamic_date_format": {
+//    "mappings": {
+//      "dynamic_date_formats": [
+//        "yyy/MM/dd"
+//      ],
+//      "properties": {
+//        "create_date": {
+//          "type": "date",
+//          "format": "yyy/MM/dd"
+//        }
+//      }
+//    }
+//  }
+//}
