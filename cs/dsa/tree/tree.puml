@@ -1,0 +1,12 @@
+@startmindmap
+
+* 树 tree
+** 二叉树 binary tree
+** 赫夫曼树 huffman tree
+** 二叉排序树 binary sort tree
+** 平衡二叉树 balanced binary tree | height-balanced tree | AVL tree
+** B_树 B-Tree
+** B+树 B-tree
+** 红黑树 Red Black Tree
+
+@endmindmap
