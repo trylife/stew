@@ -1,11 +1,20 @@
 package alg3_1_test
 
-import "testing"
+import (
+	"github.com/trylife/stew/cs/dsa/ds/stack"
+	"testing"
+)
 
 func conversion(decimal int) {
 
 }
 
 func TestConversion(t *testing.T) {
-    t.Logf("hello")
+	decimal := 1348
+	s := stack.NewStack()
+
+	for s.Len() > 0 {
+
+	}
+
 }
