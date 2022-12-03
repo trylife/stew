@@ -1,4 +1,4 @@
-package v1_test
+package v2_test
 
 import (
 	v2 "github.com/trylife/stew/cs/dsa/ds/stack/v2"

@@ -1,4 +1,4 @@
-package v1
+package v2
 
 // Stack golang stack
 type Stack []int
